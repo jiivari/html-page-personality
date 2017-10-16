@@ -38,6 +38,8 @@ app.get ('/api/analyseimage', function(req, res) {
           } else {
             console.log('response from visual-recognition');
             var jsonContent = JSON.parse(body);
+
+
             // var message = jsonContent.items[1].link;
             // console.log('result' + message);
             resolve(body)
@@ -187,14 +189,17 @@ app.get('/api/simpleget', function(req,res) {
             if (jsonContent.needs[index].name == null) {
               data = {};
             } else {
-              data = {
-                'trait_id': jsonContent.needs[index].trait_id,
-                'name': jsonContent.needs[index].name,
-                'percentile': jsonContent.needs[index].percentile,
-                'raw_score': jsonContent.needs[index].raw_score
+              if (jsonContent.needs[index].trait_id == 'need_curiosity') {
+                data = {
+                  'trait_id': jsonContent.needs[index].trait_id,
+                  'name': jsonContent.needs[index].name,
+                  'percentile': jsonContent.needs[index].percentile,
+                  'raw_score': jsonContent.needs[index].raw_score
+                }
+                returnJson[key].push(data);
               }
             }
-            returnJson[key].push(data);
+
           }
 
           if (returnRaw == true) {
