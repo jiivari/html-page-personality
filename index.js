@@ -10,7 +10,7 @@ var app = express();
 var port = 3000;
 require('dotenv').config();
 
-app.get('/api/url2png', function(req,res) {
+app.get ('/api/analyseimage', function(req, res) {
 
   const visualrecognition = function(data) {
     return new Promise(function(resolve, reject) {
@@ -20,16 +20,6 @@ app.get('/api/url2png', function(req,res) {
       } else {
         var vrAPIkey = process.env.IBM_VR_API_KEY;
         var vrclassids = process.env.IBM_VR_CLASS_KEY;
-
-        // var uri ='https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key='+vrAPIkey+'&version=2016-05-20&classifier_ids=' + vrclassids + '&url=' + data;
-        //
-        // var options = {
-        //   'method': 'GET',
-        //   'uri': uri,
-        //   'headers': {
-        //     'Content-Type': 'application/json'
-        //   }
-        // };
 
         var uri ='https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key='+vrAPIkey+'&version=2016-05-20&threshold=0&classifier_ids=' + vrclassids;
         var options = {
@@ -56,6 +46,37 @@ app.get('/api/url2png', function(req,res) {
       }
     });
   };
+
+
+  if (req.query.companyname == null) {
+    var message = {
+      'message': 'Company name missing'
+    }
+    res.type('application/json');
+    res.set('Content-Length', Buffer.byteLength(message));
+    res.status(200).send(message);
+  } else {
+    var file = 'images/' + req.query.companyname + '.png';
+    if (fs.existsSync(file)) {
+      visualrecognition(file).then(respond => {
+        res.type('application/json');
+        res.set('Content-Length', Buffer.byteLength(respond));
+        res.status(200).send(respond);
+      });
+    } else {
+      var message = {
+        'message': 'file doesnt exist',
+        'filename': file
+      }
+      res.type('application/json');
+      res.set('Content-Length', Buffer.byteLength(message));
+      res.status(200).send(message);
+    }
+  }
+
+});
+
+app.get('/api/url2png', function(req,res) {
 
   const getimagefromurl = function(filename, companyname) {
     console.log('get image from url')
@@ -98,18 +119,25 @@ app.get('/api/url2png', function(req,res) {
   console.log(file);
   if (fs.existsSync(file) && replacefile === false) {
       // Do something
+      var message = {
+        'message': 'fileExists',
+        'filename': file
+      }
       console.log('file exists');
-      visualrecognition(file).then(respond => {
-        res.type('application/json');
-        res.set('Content-Length', Buffer.byteLength(respond));
-        res.status(200).send(respond);
-      });
+      res.type('application/json');
+      res.set('Content-Length', Buffer.byteLength(message));
+      res.status(200).send(message);
+
 
   } else {
-    getimagefromurl(file, req.query.companyname).then(visualrecognition).then(respond => {
+    getimagefromurl(file, req.query.companyname).then(respond => {
+      var message = {
+        'message': 'fileExists',
+        'filename': respond
+      }
       res.type('application/json');
-      res.set('Content-Length', Buffer.byteLength(respond));
-      res.status(200).send(respond);
+      res.set('Content-Length', Buffer.byteLength(message));
+      res.status(200).send(message);
     });
   }
 
