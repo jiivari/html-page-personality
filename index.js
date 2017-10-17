@@ -4,11 +4,51 @@ var request = require('request'); // "Request" library
 //  var qs = require('querystring'); // "querystring library
 var fs = require('fs');
 var jquery = require('json-query');
-var mydata = require('./data.json');
+//var mydata = require('./data.json');
 
 var app = express();
 var port = 3000;
 require('dotenv').config();
+var mydata = {};
+
+var getData = request('https://surgeon-load-78738.netlify.com/data.json', function(err, response, body) {
+  mydata = JSON.parse(body.toLowerCase());
+  //console.log(mydata);
+});
+//console.log(mydata);
+app.get('/api/searchcomp', function(req,res) {
+
+  console.log(req.query.companyname.toLowerCase());
+  console.log(mydata);
+  var adr = jquery('[company=' + req.query.companyname.toLowerCase() + '].url', {
+    rootContext: mydata
+  }).value
+  console.log(adr);
+
+  var message = '';
+  if (adr == "" | adr == null) {
+    respond = 'url not found';
+    var message = {
+      'message': 'search company',
+      'filename': respond
+    }
+    res.type('application/json');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.set('Content-Length', Buffer.byteLength(message));
+    res.status(200).send(message);
+  } else {
+    respond = 'url found';
+    var message = {
+      'message': 'search company',
+      'filename': respond
+    }
+    res.type('application/json');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.set('Content-Length', Buffer.byteLength(message));
+    res.status(200).send(message);
+  }
+
+});
 
 app.get ('/api/analyseimage', function(req, res) {
 
@@ -57,9 +97,9 @@ app.get ('/api/analyseimage', function(req, res) {
     res.type('application/json');
     res.header('Access-Control-Allow-Origin', '*');
     res.set('Content-Length', Buffer.byteLength(message));
-    res.status(200).send(message);
+    res.status(400).send(message);
   } else {
-    var file = 'images/' + req.query.companyname + '.png';
+    var file = 'images/' + req.query.companyname.toLowerCase() + '.png';
     if (fs.existsSync(file)) {
       visualrecognition(file).then(respond => {
         res.type('application/json');
@@ -75,7 +115,7 @@ app.get ('/api/analyseimage', function(req, res) {
       res.type('application/json');
       res.header('Access-Control-Allow-Origin', '*');
       res.set('Content-Length', Buffer.byteLength(message));
-      res.status(200).send(message);
+      res.status(400).send(message);
     }
   }
 
@@ -91,7 +131,7 @@ app.get('/api/url2png', function(req,res) {
       say_cheese : true,
       protocol: 'http'
     }
-    var adr = jquery('companies[name=' + companyname + '].url', {
+    var adr = jquery('[company=' + companyname.toLowerCase() + '].url', {
       rootContext: mydata
     }).value
     //console.log(adr);
@@ -119,7 +159,7 @@ app.get('/api/url2png', function(req,res) {
     replacefile = req.query.deletefile;
   }
 
-  var file = 'images/' + req.query.companyname + '.png';
+  var file = 'images/' + req.query.companyname.toLowerCase() + '.png';
   file = file.replace(' ','_');
   console.log(file);
   if (fs.existsSync(file) && replacefile === false) {
@@ -141,10 +181,15 @@ app.get('/api/url2png', function(req,res) {
         'message': 'fileCreated',
         'filename': respond
       }
+      if (respond == 'url not found') {
+        var statuscode = 400;
+      } else {
+        var statuscode = 200;
+      }
       res.type('application/json');
       res.set('Content-Length', Buffer.byteLength(message));
       res.header('Access-Control-Allow-Origin', '*');
-      res.status(200).send(message);
+      res.status(statuscode).send(message);
     });
   }
 
@@ -271,14 +316,14 @@ app.get('/api/simpleget', function(req,res) {
     res.status(200).send('set companyname query parameter');
   } else {
     console.log(req.query.companyname);
-    var adr = jquery('companies[name=' + req.query.companyname + '].url2', {
+    var adr = jquery('[company=' + req.query.companyname.toLowerCase() + '].url2', {
       rootContext: mydata
     }).value
     console.log('address from file: ' + adr);
     if (adr == "" | adr == null) {
       console.log('search google');
       //adr = searchGoogleAdr(req.query.companyname);
-      googlesearchapi(req.query.companyname).then(parseurldata).then(personalityinsights).then(respond => {
+      googlesearchapi(req.query.companyname.toLowerCase()).then(parseurldata).then(personalityinsights).then(respond => {
         res.type('application/json');
         res.set('Content-Length', Buffer.byteLength(respond));
         res.header('Access-Control-Allow-Origin', '*');
