@@ -78,11 +78,14 @@ app.get ('/api/analyseimage', function(req, res) {
           } else {
             console.log('response from visual-recognition');
             var jsonContent = JSON.parse(body);
-
-
+            console.log(body);
+            var message = {
+              'result': jsonContent.images[0].classifiers[0].classes[0].score
+            }
+            console.log(message);
             // var message = jsonContent.items[1].link;
             // console.log('result' + message);
-            resolve(body)
+            resolve(message)
           }
         });
       }
@@ -100,6 +103,10 @@ app.get ('/api/analyseimage', function(req, res) {
     res.status(400).send(message);
   } else {
     var file = 'images/' + req.query.companyname.toLowerCase() + '.png';
+    file = file.replace(/\s/g, "_");
+
+    console.log(file);
+
     if (fs.existsSync(file)) {
       visualrecognition(file).then(respond => {
         res.type('application/json');
@@ -160,7 +167,8 @@ app.get('/api/url2png', function(req,res) {
   }
 
   var file = 'images/' + req.query.companyname.toLowerCase() + '.png';
-  file = file.replace(' ','_');
+  // file = file.replace(' ','_');
+  file = file.replace(/\s/g, "_");
   console.log(file);
   if (fs.existsSync(file) && replacefile === false) {
       // Do something
