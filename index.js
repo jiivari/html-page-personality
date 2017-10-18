@@ -4,17 +4,17 @@ var request = require('request'); // "Request" library
 //  var qs = require('querystring'); // "querystring library
 var fs = require('fs');
 var jquery = require('json-query');
-//var mydata = require('./data.json');
+var mydata = require('./data.json');
 
 var app = express();
 var port = 3000;
 require('dotenv').config();
-var mydata = {};
-
-var getData = request('https://surgeon-load-78738.netlify.com/data.json', function(err, response, body) {
-  mydata = JSON.parse(body.toLowerCase());
-  //console.log(mydata);
-});
+// var mydata = {};
+//
+// // var getData = request('https://surgeon-load-78738.netlify.com/data.json', function(err, response, body) {
+// //   mydata = JSON.parse(body.toLowerCase());
+// //   //console.log(mydata);
+// // });
 //console.log(mydata);
 app.get('/api/searchcomp', function(req,res) {
 
