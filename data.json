@@ -1430,6 +1430,21 @@
     "url2": "https://www.f-secure.com/en/web/about_global/about-us"
   },
   {
+    "company": "fortum",
+    "url": "https://www.fortum.com/frontpage/fi/?from=irene",
+    "url2": "https://www.fortum.com/en/careers-and-students/10-reasons-to-work-for-us/pages/default.aspx"
+  },
+  {
+    "company": "fortum oyj",
+    "url": "https://www.fortum.com/frontpage/fi/?from=irene",
+    "url2": "https://www.fortum.com/en/careers-and-students/10-reasons-to-work-for-us/pages/default.aspx"
+  },
+  {
+    "company": "fortum power and heat oy",
+    "url": "https://www.fortum.com/frontpage/fi/?from=irene",
+    "url2": "https://www.fortum.com/en/careers-and-students/10-reasons-to-work-for-us/pages/default.aspx"
+  },
+  {
     "company": "fujitsu",
     "url": "http://www.fujitsu.com/global/",
     "url2": "http://www.fujitsu.com/global/about/"
@@ -4763,5 +4778,10 @@
     "company": "zztribe",
     "url": "",
     "url2": ""
+  },
+  {
+    "company": "persona global",
+    "url": "https://www.personaglobal.com",
+    "url2": "https://www.personaglobal.com/about-us/mission-vision"
   }
 ]
