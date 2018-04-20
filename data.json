@@ -1,5 +1,4 @@
-[
-  {
+[{
     "company": "2nd opinion",
     "url": "http://2ndopinion.com/",
     "url2": ""
@@ -4785,58 +4784,58 @@
     "url2": "https://www.personaglobal.com/about-us/mission-vision"
   },
   {
-	"company": "työ ja elinkeinoministeriö",
-	"url": "http://tem.fi/en/frontpage",
-	"url2": "http://tem.fi/en/values"
+    "company": "työ ja elinkeinoministeriö",
+    "url": "http://tem.fi/en/frontpage",
+    "url2": "http://tem.fi/en/values"
   },
   {
-	"company": "super työttömyyskassa",
-	"url": "https://www.supertk.fi/in-english/",
-	"url2": "https://www.supertk.fi/in-english/"
+    "company": "super työttömyyskassa",
+    "url": "https://www.supertk.fi/in-english/",
+    "url2": "https://www.supertk.fi/in-english/"
   },
   {
-	"company": "syt",
-	"url": "https://syt.fi/",
-	"url2: ""
+    "company": "syt",
+    "url": "https://syt.fi/",
+    "url2": ""
   },
   {
-	"company": "Merimies unioni",
-	"url": "https://www.smu.fi/in-english/",
-	"url2": "https://www.smu.fi/in-english/union-administration/administration/"
+    "company": "merimies unioni",
+    "url": "https://www.smu.fi/in-english/",
+    "url2": "https://www.smu.fi/in-english/union-administration/administration/"
   },
   {
-	"company": "Palvelualojen ammattiliitto",
-	"url": "https://www.pam.fi/en/frontpage.html",
-	"url2": "https://www.pam.fi/en/about-pam.html"
+    "company": "palvelualojen ammattiliitto",
+    "url": "https://www.pam.fi/en/frontpage.html",
+    "url2": "https://www.pam.fi/en/about-pam.html"
   },
   {
-	"company": "Opettajien työttömyyskassa",
-	"url": "https://www.opetk.fi/en",
-	"url2": "https://www.opetk.fi/en"
+    "company": "opettajien työttömyyskassa",
+    "url": "https://www.opetk.fi/en",
+    "url2": "https://www.opetk.fi/en"
   },
   {
-	"company": "Opetusalan ammattijärjestö",
-	"url": "http://www.oaj.fi/cs/oaj/public_en",
-	"url2": "http://www.oaj.fi/cs/oaj/Ethical%20Principles%20for%20the%20Teaching%20Profession_en"
+    "company": "opetusalan ammattijärjestö",
+    "url": "http://www.oaj.fi/cs/oaj/public_en",
+    "url2": "http://www.oaj.fi/cs/oaj/Ethical%20Principles%20for%20the%20Teaching%20Profession_en"
   },
   {
-	"company": "Kuljetusalan työttömyyskassa",
-	"url": "http://www.kuljetusalantk.fi/fi/etusivu/in_english",
-	"url2": "http://www.kuljetusalantk.fi/fi/etusivu/in_english/if_you_become_unemployed"
-	},
+    "company": "kuljetusalan työttömyyskassa",
+    "url": "http://www.kuljetusalantk.fi/fi/etusivu/in_english",
+    "url2": "http://www.kuljetusalantk.fi/fi/etusivu/in_english/if_you_become_unemployed"
+  },
   {
-	"company": "Jyty",
-	"url": "http://www.jytyliitto.fi/en/Sivut/default.aspx",
-	"url2": "http://www.jytyliitto.fi/en/membership/Sivut/default.aspx"
-	},
-  { 
-	"company": "Julkisten ja hyvinvointialojen työttömyyskassa",
-	"url": "https://tyottomyyskassa.jhl.fi/in-english/",
-	"url2": "https://tyottomyyskassa.jhl.fi/in-english/hakuohje-lomautetulle-en/hakuohje-lomautetulle-en/"
- },
- {
-	"company": "Erto",
-	"url": "https://www.erto.fi/",
-	"url": "https://www.erto.fi/english"
-	}
+    "company": "jyty",
+    "url": "http://www.jytyliitto.fi/en/Sivut/default.aspx",
+    "url2": "http://www.jytyliitto.fi/en/membership/Sivut/default.aspx"
+  },
+  {
+    "company": "julkisten ja hyvinvointialojen työttömyyskassa",
+    "url": "https://tyottomyyskassa.jhl.fi/in-english/",
+    "url2": "https://tyottomyyskassa.jhl.fi/in-english/hakuohje-lomautetulle-en/hakuohje-lomautetulle-en/"
+  },
+  {
+    "company": "erto",
+    "url": "https://www.erto.fi/",
+    "url": "https://www.erto.fi/english"
+  }
 ]

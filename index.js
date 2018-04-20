@@ -132,7 +132,10 @@ app.get('/api/url2png', function(req,res) {
 
   const getimagefromurl = function(filename, companyname) {
     console.log('get image from url')
-    var url2png = require('url2png')('P57D02ACF715955', 'S_0CB8D2ACC15A3');
+    var url2pngapikey = process.env.URL2PNG_API_KEY;
+    var url2pngprivatekey = process.env.URL2PNG_PRIVATE_KEY;
+
+    var url2png = require('url2png')(url2pngapikey, url2pngprivatekey);
     var options = {
       viewport : '1920x1080',
       say_cheese : true,
@@ -301,7 +304,7 @@ app.get('/api/simpleget', function(req,res) {
 
       var config = { 'preserveLineBreaks': false }
       textract.fromUrl(q,  function( error, text ) {
-        //console.log(text);
+        console.log(text);
         var datetime = new Date();
         var data = { 'contentItems': [{
           'content': text,
