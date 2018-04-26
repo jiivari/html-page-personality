@@ -33,7 +33,9 @@ app.get('/api/searchcomp', function(req,res) {
       'filename': respond
     }
     res.type('application/json');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET')
+    res.header('Access-Control-Allow-Headers', '*')
     res.set('Content-Length', Buffer.byteLength(message));
     res.status(200).send(message);
   } else {
@@ -43,7 +45,9 @@ app.get('/api/searchcomp', function(req,res) {
       'filename': respond
     }
     res.type('application/json');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET')
+    res.header('Access-Control-Allow-Headers', '*')
     res.set('Content-Length', Buffer.byteLength(message));
     res.status(200).send(message);
   }
@@ -98,7 +102,9 @@ app.get ('/api/analyseimage', function(req, res) {
       'message': 'Company name missing'
     }
     res.type('application/json');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET')
+    res.header('Access-Control-Allow-Headers', '*')
     res.set('Content-Length', Buffer.byteLength(message));
     res.status(400).send(message);
   } else {
@@ -110,7 +116,9 @@ app.get ('/api/analyseimage', function(req, res) {
     if (fs.existsSync(file)) {
       visualrecognition(file).then(respond => {
         res.type('application/json');
-        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Methods', 'GET')
+        res.header('Access-Control-Allow-Headers', '*')
         res.set('Content-Length', Buffer.byteLength(respond));
         res.status(200).send(respond);
       });
@@ -120,7 +128,9 @@ app.get ('/api/analyseimage', function(req, res) {
         'filename': file
       }
       res.type('application/json');
-      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Methods', 'GET')
+      res.header('Access-Control-Allow-Headers', '*')
       res.set('Content-Length', Buffer.byteLength(message));
       res.status(400).send(message);
     }
@@ -181,7 +191,9 @@ app.get('/api/url2png', function(req,res) {
       }
       console.log('file exists');
       res.type('application/json');
-      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Methods', 'GET')
+      res.header('Access-Control-Allow-Headers', '*')
       res.set('Content-Length', Buffer.byteLength(message));
       res.status(200).send(message);
 
@@ -199,7 +211,9 @@ app.get('/api/url2png', function(req,res) {
       }
       res.type('application/json');
       res.set('Content-Length', Buffer.byteLength(message));
-      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Methods', 'GET')
+      res.header('Access-Control-Allow-Headers', '*')
       res.status(statuscode).send(message);
     });
   }
@@ -322,7 +336,9 @@ app.get('/api/simpleget', function(req,res) {
   if (req.query.companyname == null) {
     var adr = '';
     res.type('text/plain');
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET')
+    res.header('Access-Control-Allow-Headers', '*')
     res.set('Content-Length', Buffer.byteLength('set companyname query parameter'));
     res.status(200).send('set companyname query parameter');
   } else {
@@ -337,13 +353,17 @@ app.get('/api/simpleget', function(req,res) {
       googlesearchapi(req.query.companyname.toLowerCase()).then(parseurldata).then(personalityinsights).then(respond => {
         res.type('application/json');
         res.set('Content-Length', Buffer.byteLength(respond));
-        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Methods', 'GET')
+        res.header('Access-Control-Allow-Headers', '*')
         res.status(200).send(respond);
       });
     } else {
       parseurldata(adr).then(personalityinsights).then(respond => {
         res.type('application/json');
-        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Methods', 'GET')
+        res.header('Access-Control-Allow-Headers', '*')
         res.set('Content-Length', Buffer.byteLength(respond));
         res.status(200).send(respond);
       });
